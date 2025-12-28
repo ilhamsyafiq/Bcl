@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Force mobile width even on desktop -->
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>BCL.my Style Clone</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+   /* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base body style */
+body {
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(180deg, #fffbe9 0%, #fff3b0 100%);
+  color: #222;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0;
+}
+
+/* Mobile wrapper — fix width 600px on desktop, full width on phone */
+.mobile-wrapper {
+  width: 100%;
+  max-width: 600px;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #fff9e9 0%, #fff3b0 100%);
+  overflow-x: hidden;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  transition: all 0.3s ease;
+}
+
+/* Add a realistic phone preview look on desktop */
+@media (min-width: 601px) {
+  body {
+    background: linear-gradient(180deg, #fff9e9 0%, #fff3b0 100%);
+  }
+
+  .mobile-wrapper {
+    border-radius: 22px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+/* On mobile, remove shadow + radius for full-width natural feel */
+@media (max-width: 600px) {
+  body {
+    background: linear-gradient(180deg, #fff9e9 0%, #fff3b0 100%);
+  }
+
+  .mobile-wrapper {
+    box-shadow: none;
+    border-radius: 0;
+  }
+}
+/* Navigation bar */
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #fff;
+  padding: 0.8rem 1rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px; /* set max width */
+  z-index: 10;
+}
+
+/* Navbar links */
+.navbar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+/* Hover effect */
+.navbar a:hover {
+  background-color: #ffcc00;;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* Active (clicked) link */
+.navbar a.active {
+  background-color: #0056b3;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 91, 187, 0.3);
+}
+
+/* Mobile friendly */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0.8rem;
+    max-width: 95%;
+  }
+
+  .navbar a {
+    font-size: 14px;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* Logo */
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000;
+}
+
+.logo span {
+  color: #ffcc00;
+}
+
+/* Nav links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #000;
+}
+
+/* Sign-up button */
+.signup-btn {
+  background: #ffcc00;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #000;
+  transition: background 0.3s ease;
+}
+
+.signup-btn:hover {
+  background: #ffd633;
+}
+
+/* Hero section */
+.hero {
+  margin-top: 150px;
+  text-align: center;
+  padding: 2rem;
+}
+
+.badge {
+  display: inline-block;
+  background: #ffcc00;
+  color: #000;
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.badge span {
+  background: #fff;
+  border-radius: 9999px;
+  padding: 0.2rem 0.5rem;
+  margin-left: 0.3rem;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+
+.cta {
+  background: #ffcc00;
+  color: #000;
+  border: none;
+  padding: 0.8rem 1.8rem;
+  font-size: 1rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.cta:hover {
+  background: #ffd633;
+}
+
+.hero p {
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+/* Image section styling */
+.image-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+}
+
+.image-container {
+  width: 90%;
+  max-width: 900px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+}
+/* Image + Trusted Section */
+.image-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.image-container {
+  width: 90%;
+  max-width: 900px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+}
+
+/* Trusted text */
+.trusted {
+  margin-top: 2rem;
+}
+
+.trusted h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 1.5rem;
+}
+
+/* Company logos row (optional) */
+/* Company logos row */
+.company-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Logo box */
+.company-logos img {
+  width: 120px;                /* uniform width */
+  height: 60px;                /* uniform height */
+  object-fit: contain;         /* keeps aspect ratio without distortion */
+  background-color: #fff;      /* optional: helps transparent logos stand out */
+  padding: 10px;               /* spacing inside the box */
+  border-radius: 10px;         /* rounded edges for style */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  opacity: 0.85;
+  transition: all 0.3s ease;
+}
+
+.company-logos img:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+/* ===== WHY CHOOSE US SECTION ===== */
+.why-choose {
+  background: #fff9e9;
+  padding: 4rem 1rem;
+  text-align: center;
+  border-radius: 20px;
+  font-family: 'Inter', sans-serif;
+  margin-top: 3rem;
+}
+
+.why-header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 0.8rem;
+}
+
+.why-header h2 span {
+  color: #ffcc00;
+}
+
+.why-header p {
+  color: #555;
+  font-size: 0.95rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+/* === HOW IT WORKS SECTION === */
+.how-it-works {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(180deg, #fff8e1 0%, #fffdf8 100%);
+}
+
+.how-it-works h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.how-it-works h3 {
+  font-size: 1.2rem;
+  color: #444;
+  font-weight: 500;
+  max-width: 650px;
+  margin: 0 auto 60px;
+}
+
+.how-it-works .highlight {
+  color: #ffb400;
+  font-weight: 700;
+}
+
+.steps-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.step-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  padding: 30px 20px;
+  width: 280px;
+  text-align: left;
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.step-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(255, 200, 0, 0.3);
+}
+
+.step-number {
+  background: #ffb400;
+  color: white;
+  font-weight: 700;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  transition: 0.3s;
+}
+
+.step-card:hover .step-number {
+  background: #ff8c00;
+}
+
+.step-card h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.step-card p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .how-it-works {
+    padding: 50px 10px;
+  }
+
+  .step-card {
+    width: 100%;
+  }
+
+  .how-it-works h2 {
+    font-size: 2rem;
+  }
+
+  .how-it-works h3 {
+    font-size: 1rem;
+    margin-bottom: 40px;
+  }
+}
+
+
+/* Table styling */
+.comparison-table {
+  overflow-x: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.comparison-table table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 700px;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #f1f1f1;
+  font-size: 0.95rem;
+}
+
+.comparison-table th {
+  background: #ffcc00;
+  color: #000;
+  font-weight: 700;
+}
+
+.comparison-table td:nth-child(2) {
+  color: #111;
+  font-weight: 600;
+}
+
+.comparison-table td:nth-child(3) {
+  color: #999;
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Hover effect for rows */
+.comparison-table tr:hover {
+  background-color: #fffbe9;
+  transition: background 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.8rem;
+    font-size: 0.85rem;
+  }
+}
+
+
+/* ====== PRICING SECTION ====== */
+.pricing {
+  background: #fff9e9;
+  padding: 4rem 1rem;
+  text-align: center;
+  border-radius: 20px;
+  font-family: 'Inter', 'Poppins', sans-serif;
+}
+
+.pricing-header h2 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+
+.pricing-header p {
+  color: #555;
+  max-width: 550px;
+  margin: 0 auto 2rem;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+  align-items: stretch;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ===== Card Base ===== */
+.pricing-card {
+  background: #fff;
+  border: 2px solid #eee;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  padding: 2rem 1.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  cursor: pointer; /* Make it feel clickable */
+}
+
+/* Hover effect */
+.pricing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+  border-color: #ffcd00;
+}
+
+/* Recommended Plan */
+
+.recommended:hover {
+  transform: scale(1.05);
+  border-color: #ff9800;
+  box-shadow: 0 14px 30px rgba(255, 187, 0, 0.3);
+}
+
+/* Ribbon Badge */
+.ribbon {
+  background: #ff8c00;
+  color: white;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 0 8px 8px 0;
+  position: absolute;
+  top: 1rem;
+  right: -0.5rem;
+}
+
+/* ===== Text Styles ===== */
+.pricing-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.pricing-card h2 {
+  color: #000;
+  margin: 0.5rem 0 1rem;
+  font-size: 1.6rem;
+}
+
+.pricing-card h2 span {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.pricing-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.pricing-card li {
+  margin-bottom: 0.4rem;
+}
+
+/* Add-on section */
+.addon {
+  margin-top: 1rem;
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: left;
+}
+
+.addon h4 {
+  margin-top: 0;
+  color: #111;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+/* Button */
+.btn {
+  background: #ffcd00;
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  margin-top: auto;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: #ffb900;
+  transform: translateY(-3px);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .pricing {
+    padding: 2rem 1rem;
+  }
+  .pricing-card {
+    padding: 1.5rem;
+  }
+}
+/* ===== Testimonials Section ===== */
+.testimonials {
+  background: linear-gradient(180deg, #fff9e9 0%, #fff3b0 100%);
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  color: #000;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  border-left: 6px solid #ffcd00;
+  padding-left: 0.8rem;
+  display: inline-block;
+}
+
+.testimonial-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  background: #fffef6;
+  border: 2px solid #ffedb3;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #ffcd00;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.testimonial-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 0.4rem;
+}
+
+.stars {
+  color: #ffcd00;
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.testimonial-text {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Mobile friendly */
+@media (max-width: 600px) {
+  .testimonial-card {
+    padding: 1.2rem;
+  }
+  .section-title {
+    font-size: 1.5rem;
+  }
+}
+
+
+/* ===== Footer Section (Matching Pricing Card Style) ===== */
+.footer {
+  background: linear-gradient(180deg, #fff9e9 0%, #fff3b0 100%);
+  color: #333;
+  padding: 3rem 1rem;
+  font-family: 'Inter', 'Poppins', sans-serif;
+  border-top: 2px solid #ffcd00;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.footer-section h3 {
+  color: #000;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  border-left: 4px solid #ffcd00;
+  padding-left: 0.6rem;
+  font-weight: 700;
+}
+
+.footer-section p {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.6rem;
+}
+
+.footer-section ul li a {
+  color: #444;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.footer-section ul li a:hover {
+  color: #ffb900;
+  transform: translateX(4px);
+}
+
+/* Footer bottom */
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid #ffedb3;
+  color: #777;
+  font-size: 0.85rem;
+  margin-top: 2rem;
+}
+
+/* Responsive (Mobile view centered) */
+@media (max-width: 600px) {
+  .footer-content {
+    text-align: center;
+  }
+  .footer-section h3 {
+    border: none;
+    padding-left: 0;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="mobile-wrapper">
+    <header class="navbar">
+      <div class="logo">bcl.<span>my</span></div>
+      <nav class="nav-links">
+       
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-content">
+        <div class="badge">NEW <span>E-INVOICE READY!</span></div>
+        <h1>Quickly create QR terminal,<br>payment form & payment link.</h1>
+        <button class="cta">Register for Free</button>
+        <p>It’s free and takes less than a minute!</p>
+      </div>
+    </section>
+
+    <section class="image-section">
+      <div class="image-container">
+        <img src="https://main.bcl.my/wp-content/themes/astra-child/assets/images/home-new/bcl-dashboard.png" alt="App preview" />
+      </div>
+      <div class="trusted">
+        <h2>Trusted by These Companies</h2>
+        <div class="company-logos">
+          <img src="https://images.seeklogo.com/logo-png/32/1/dexandra-logo-png_seeklogo-324982.png" alt="DeXandra">
+          <img src="https://th.bing.com/th/id/OIP.ygpUhRAY5MpzPX02IlHVhgHaHa?w=176&h=180&c=7&r=0&o=7&cb=12&dpr=1.1&pid=1.7&rm=3" alt="Company 2">
+          <img src="https://assets.petakopi.my/lskiub9ms0g3fph1kalzijboozqe" alt="Company 3">
+          <img src="https://axxis-consulting.com/wp-content/uploads/2023/02/simplysiti-logo.png" alt="Company 4">
+          <img src="https://images.seeklogo.com/logo-png/29/1/syria-care-logo-png_seeklogo-293612.png" alt="Company 5">
+          <img src="https://cdn.solo.to/user/a/602b3d1fd3c8e3_27639265.jpg" alt="Company 6">
+        </div>
+      </div>
+    </section>
+<!-- WHY CHOOSE US SECTION -->
+<section class="why-choose">
+  <div class="why-header">
+    <h2>Why Choose <span>BCL.my</span>?</h2>
+    <p>We offer everything you need to grow your business — fast, secure, and affordable.</p>
+  </div>
+
+  <div class="comparison-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>BCL.my</th>
+          <th>Other Providers</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Free Subdomain & Hosting</td>
+          <td>✔ Included</td>
+          <td>X Not Available</td>
+        </tr>
+        <tr>
+          <td>Affiliate System</td>
+          <td>✔ Built-In</td>
+          <td>⚠ Add-on</td>
+        </tr>
+        <tr>
+          <td>e-Invoice (LHDN Ready)</td>
+          <td>✔ Supported</td>
+          <td>X Not Supported</td>
+        </tr>
+        <tr>
+          <td>Local Bank Payment</td>
+          <td>✔ FPX, DuitNow</td>
+          <td>⚠ Limited Options</td>
+        </tr>
+        <tr>
+          <td>Customer Support</td>
+          <td>✔ Local, Fast Response</td>
+          <td>X Overseas Only</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+    <section class="pricing">
+      <div class="pricing-header">
+        <h2>Choose the Perfect Plan for Your Business</h2>
+        <p>Find the right package to match your needs—whether you’re just starting out or scaling fast.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Free</h3>
+          <h2>RM 0</h2>
+          <ul>
+            <li>✔ FPX transaction fees as low as RM1.00</li>
+            <li>✔ Unlimited Payment Form</li>
+            <li>✔ Unlimited Payment Link</li>
+            <li>✔ Support Affiliate System</li>
+            <li>✔ Support Coupon Feature</li>
+            <li>✔ Support Marketing Tracking</li>
+            <li>✔ Basic Support</li>
+            <li>X No Free Domain</li>
+          </ul>
+          <div class="addon">
+            <h4>PREMIUM ADD ON</h4>
+            <ul>
+              <li>X E-Invoice Mylvnios LHDN</li>
+              <li>X COD & Manual Bank Transfer</li>
+              <li>More upcoming premium add-on soon...</li>
+            </ul>
+          </div>
+         
+        </div>
+
+        <div class="pricing-card">
+          <h3>Package Niaga</h3>
+          <h2>RM 888 <span>/year</span></h2>
+          <ul>
+            <li>✔ FPX transaction fees as low as RM1.00</li>
+            <li>✔ Unlimited Payment Form</li>
+            <li>✔ Unlimited Payment Link</li>
+            <li>✔ Support Affiliate System</li>
+            <li>✔ Support Coupon Feature</li>
+            <li>✔ Support Marketing Tracking</li>
+            <li>✔ Fast Support</li>
+            <li>✔ Free Domain .com only</li>
+          </ul>
+          <div class="addon">
+            <h4>PREMIUM ADD ON</h4>
+            <ul>
+              <li>✔ E-Invoice Mylvnios LHDN</li>
+              <li>✔ COD & Manual Bank Transfer</li>
+              <li>More upcoming premium add-on soon...</li>
+            </ul>
+          </div>
+          
+        </div>
+
+        <div class="pricing-card recommended">
+          <div class="ribbon">RECOMMENDED</div>
+          <h3>Package Niaga Pro</h3>
+          <h2>RM 1,888 <span>/year</span></h2>
+          <ul>
+            <li>✔ FPX transaction fees as low as RM1.00</li>
+            <li>✔ Unlimited Payment Form</li>
+            <li>✔ Unlimited Payment Link</li>
+            <li>✔ Support Affiliate System</li>
+            <li>✔ Support Coupon Feature</li>
+            <li>✔ Support Marketing Tracking</li>
+            <li>✔ Fast Support</li>
+            <li>✔ Free Domain .com / .my / .com.my</li>
+          </ul>
+          <div class="addon">
+            <h4>PREMIUM ADD ON</h4>
+            <ul>
+              <li>✔ E-Invoice Mylvnios LHDN</li>
+              <li>✔ COD & Manual Bank Transfer</li>
+              <li>More upcoming premium add-on soon...</li>
+            </ul>
+          </div>
+       
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials">
+  <h2 class="section-title">What Our Customers Say</h2>
+
+  <div class="testimonial-container">
+    <div class="testimonial-card">
+      <img src="https://i.pravatar.cc/100?img=1" alt="Customer 1" class="testimonial-img">
+      <h3 class="testimonial-name">Aisha Rahman</h3>
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">
+        “BCL.my makes payments super easy for my business. The dashboard is clean and fast — highly recommended!”
+      </p>
+    </div>
+
+    <div class="testimonial-card">
+      <img src="https://i.pravatar.cc/100?img=2" alt="Customer 2" class="testimonial-img">
+      <h3 class="testimonial-name">Daniel Tan</h3>
+      <div class="stars">★★★★☆</div>
+      <p class="testimonial-text">
+        “Customer support is top-notch! I managed to integrate the system smoothly without any coding hassle.”
+      </p>
+    </div>
+
+    <div class="testimonial-card">
+      <img src="https://i.pravatar.cc/100?img=3" alt="Customer 3" class="testimonial-img">
+      <h3 class="testimonial-name">Nurul Ain</h3>
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">
+        “Great experience overall. My payment tracking and invoicing are now faster than ever.”
+      </p>
+    </div>
+  </div>
+</section>
+<section class="how-it-works">
+  <h2>How It Works</h2>
+  <h3>Creating your payment landing page with <span class="highlight">BCL</span> is simple and fast.</h3>
+
+  <div class="steps-container">
+    <div class="step-card">
+      <div class="step-number">1</div>
+      <h4>Design Your Landing Page</h4>
+      <p>Customize your page content, images, and payment form according to your business or campaign needs.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-number">2</div>
+      <h4>Choose Your Payment Form Type</h4>
+      <p>Select the form style that fits your payment goals — fixed price, donation, product selection, or variations.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-number">3</div>
+      <h4>Publish and Share</h4>
+      <p>Launch your landing page instantly and share the link via email, social media, or embed it on your site.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-number">4</div>
+      <h4>Collect Payments Effortlessly</h4>
+      <p>Customers pay directly on your landing page using their preferred method — you get notified instantly.</p>
+    </div>
+  </div>
+</section>
+
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>About BCL.my</h3>
+          <p>BCL.my is a leading payment solution provider in Malaysia, offering a range of services to help businesses manage their payments efficiently.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Showcase</a></li>
+            <li><a href="#">Log in</a></li>
+            <li><a href="#">Sign Up</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <p>Email: WebImpian.com</p>
+          <p>Phone: +60 123 4567</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
